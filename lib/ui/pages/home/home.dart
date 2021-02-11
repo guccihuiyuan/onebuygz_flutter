@@ -1,31 +1,94 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class HYHomeScreen extends StatelessWidget {
+class HYHomeScreen extends StatefulWidget {
+  @override
+  _HYHomeScreenState createState() => _HYHomeScreenState();
+}
+
+class _HYHomeScreenState extends State<HYHomeScreen> {
+  // 白色状态栏
+  static const SystemUiOverlayStyle light = SystemUiOverlayStyle(
+    // systemNavigationBarColor: Color(0xFF000000),
+    // systemNavigationBarDividerColor: null,
+    statusBarColor: Colors.transparent,
+    // systemNavigationBarIconBrightness: Brightness.light,
+    statusBarIconBrightness: Brightness.light,
+    statusBarBrightness: Brightness.dark,
+  );
+
+  // 黑色状态栏
+  static const SystemUiOverlayStyle dark = SystemUiOverlayStyle(
+    // systemNavigationBarColor: Colors.white,
+    // systemNavigationBarDividerColor: null,
+    statusBarColor: Colors.white,
+    // systemNavigationBarIconBrightness: Brightness.light,
+    statusBarIconBrightness: Brightness.dark,
+    statusBarBrightness: Brightness.light,
+  );
+
+  final _scrollController = ScrollController();
+
+  // 状态栏是否是白色
+  var isLight = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    SystemChrome.setSystemUIOverlayStyle(light);
+
+    _scrollController.addListener(() {
+      if (_scrollController.offset <= 0) {
+        SystemChrome.setSystemUIOverlayStyle(light);
+        setState(() {
+          isLight = true;
+        });
+      } else {
+        SystemChrome.setSystemUIOverlayStyle(dark);
+        setState(() {
+          isLight = false;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         color: Colors.red,
-        width: double.infinity,
-        height: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 10.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                HYStatusBar(),
-                HYNavBar(),
-                HYHomeSearch(),
-                SizedBox(height: 12),
-                HYHot(),
-                SizedBox(height: 12),
-                HYGrid(),
-                SizedBox(height: 12),
-                HYCommodities(),
-                SizedBox(height: 12),
-              ],
+        child: Column(
+          children: [
+            HYStatusBar(),
+            HYNavBar(isLight),
+            Expanded(
+              flex: 1,
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: Column(
+                      children: [
+                        SizedBox(height: 12),
+                        HYHomeSearch(),
+                        SizedBox(height: 12),
+                        HYHot(),
+                        SizedBox(height: 12),
+                        HYGrid(),
+                        SizedBox(height: 12),
+                        HYCommodities(),
+                        SizedBox(height: 12),
+                      ],
+                    )
+                ),
+              ),
             )
-          )
+          ],
+        ),
       )
     );
   }
@@ -42,37 +105,43 @@ class HYStatusBar extends StatelessWidget {
 }
 
 class HYNavBar extends StatelessWidget {
+  var isLight;
+  HYNavBar(this.isLight);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 44,
-      child: Row(
-        children: [
-          Row(
-            children: [
-              Icon(Icons.location_on, color: Colors.white, size: 16),
-              SizedBox(width: 6),
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Text("贵阳市", style: TextStyle(color: Colors.white)),
-                      Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 16),
-                    ],
-                  ),
-                  Text("6℃~116℃", style: TextStyle(color: Colors.white, fontSize: 12))
-                ],
-              ),
-            ],
-          ),
-          Expanded(
-            flex: 1,
-            child: Align(
-              child: Text("一码贵州", style: TextStyle(color: Colors.white, fontSize: 24)),
+      color: this.isLight ? Colors.transparent : Colors.white,
+        padding: EdgeInsets.symmetric(horizontal: 10.0),
+        height: 44,
+        child: Row(
+          children: [
+            Row(
+              children: [
+                Icon(Icons.location_on, color: this.isLight ? Colors.white : Colors.black, size: 16),
+                SizedBox(width: 6),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Text("贵阳市", style: TextStyle(color: this.isLight ? Colors.white : Colors.black)),
+                        Icon(Icons.keyboard_arrow_down, color: this.isLight ? Colors.white : Colors.black, size: 16),
+                      ],
+                    ),
+                    Text("6℃~116℃", style: TextStyle(color: this.isLight ? Colors.white : Colors.black, fontSize: 12))
+                  ],
+                ),
+              ],
             ),
-          )
-        ],
-      )
+            Expanded(
+              flex: 1,
+              child: Align(
+                child: Text("一码贵州", style: TextStyle(color: this.isLight ? Colors.white : Colors.black, fontSize: 24)),
+              ),
+            )
+          ],
+        )
     );
   }
 }
@@ -223,8 +292,8 @@ class HYCommodities extends StatelessWidget {
         shrinkWrap: true,
         crossAxisCount: 2,
         padding: EdgeInsets.zero,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
+        mainAxisSpacing: 16,
+        crossAxisSpacing: 16,
         childAspectRatio: 0.8,
         physics: NeverScrollableScrollPhysics(),
         children: [
@@ -310,16 +379,6 @@ class HYCommodities extends StatelessWidget {
               child: Image.network(imageUrl, fit: BoxFit.fill),
             ),
           ),
-
-
-
-          // Container(
-          //     decoration: BoxDecoration(
-          //         borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          //         color: Colors.white
-          //     ),
-          //     child: Image.network(imageUrl),
-          // )
         ],
       ),
     );

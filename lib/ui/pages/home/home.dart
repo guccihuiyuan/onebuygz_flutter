@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:one_buy_guizhou/ui/pages/web_light_app/web_light_app.dart';
 
 class HYHomeScreen extends StatefulWidget {
   @override
@@ -10,21 +11,21 @@ class HYHomeScreen extends StatefulWidget {
 class _HYHomeScreenState extends State<HYHomeScreen> {
   // 白色状态栏
   static const SystemUiOverlayStyle light = SystemUiOverlayStyle(
-    // systemNavigationBarColor: Color(0xFF000000),
-    // systemNavigationBarDividerColor: null,
+    systemNavigationBarColor: Colors.black,
+    systemNavigationBarDividerColor: null,
     statusBarColor: Colors.transparent,
-    // systemNavigationBarIconBrightness: Brightness.light,
+    systemNavigationBarIconBrightness: Brightness.light,
     statusBarIconBrightness: Brightness.light,
     statusBarBrightness: Brightness.dark,
   );
 
   // 黑色状态栏
   static const SystemUiOverlayStyle dark = SystemUiOverlayStyle(
-    // systemNavigationBarColor: Colors.white,
-    // systemNavigationBarDividerColor: null,
+    systemNavigationBarColor: Colors.black,
+    systemNavigationBarDividerColor: null,
     statusBarColor: Colors.white,
-    // systemNavigationBarIconBrightness: Brightness.light,
-    statusBarIconBrightness: Brightness.dark,
+    systemNavigationBarIconBrightness: Brightness.dark,
+    statusBarIconBrightness: Brightness.light,
     statusBarBrightness: Brightness.light,
   );
 
@@ -297,12 +298,17 @@ class HYCommodities extends StatelessWidget {
         childAspectRatio: 0.8,
         physics: NeverScrollableScrollPhysics(),
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              color: Colors.white,
-              child: Image.network(imageUrl, fit: BoxFit.fill),
+          GestureDetector(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                color: Colors.white,
+                child: Image.network(imageUrl, fit: BoxFit.fill),
+              ),
             ),
+            onTap: () {
+              Navigator.of(context).pushNamed(HYWebLightApp.routeName);
+            },
           ),
           ClipRRect(
             borderRadius: BorderRadius.circular(20),

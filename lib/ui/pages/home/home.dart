@@ -21,11 +21,11 @@ class _HYHomeScreenState extends State<HYHomeScreen> {
 
   // 黑色状态栏
   static const SystemUiOverlayStyle dark = SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.black,
+    systemNavigationBarColor: Colors.white,
     systemNavigationBarDividerColor: null,
     statusBarColor: Colors.white,
-    systemNavigationBarIconBrightness: Brightness.dark,
-    statusBarIconBrightness: Brightness.light,
+    systemNavigationBarIconBrightness: Brightness.light,
+    statusBarIconBrightness: Brightness.dark,
     statusBarBrightness: Brightness.light,
   );
 
@@ -62,7 +62,7 @@ class _HYHomeScreenState extends State<HYHomeScreen> {
         color: Colors.red,
         child: Column(
           children: [
-            HYStatusBar(),
+            HYStatusBar(isLight),
             HYNavBar(isLight),
             Expanded(
               flex: 1,
@@ -96,10 +96,14 @@ class _HYHomeScreenState extends State<HYHomeScreen> {
 }
 
 class HYStatusBar extends StatelessWidget {
+  var isLight;
+  HYStatusBar(this.isLight);
+
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     return Container(
+      color: this.isLight ? Colors.transparent : Colors.white,
       height: statusBarHeight,
     );
   }

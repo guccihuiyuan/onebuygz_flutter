@@ -25,7 +25,8 @@ class HYWebLightAppState extends State<HYWebLightApp> {
         backgroundColor: Colors.white,
       ),
       body: WebView(
-        initialUrl: 'https://www.bilibili.com/',
+        javascriptMode: JavascriptMode.unrestricted,
+        initialUrl: 'https://www.vgogbuy.com',
       )
     );
   }

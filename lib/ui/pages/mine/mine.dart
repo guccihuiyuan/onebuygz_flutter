@@ -7,6 +7,7 @@ class HYMineScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("我的"),
+        backgroundColor: Colors.white,
       ),
       body: Column(
         children: [

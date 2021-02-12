@@ -21,7 +21,7 @@ class HYWebLightAppState extends State<HYWebLightApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-          title: new Text('bilibili'),
+          title: new Text('那家网'),
         backgroundColor: Colors.white,
       ),
       body: WebView(

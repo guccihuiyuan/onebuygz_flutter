@@ -121,29 +121,36 @@ class HYNavBar extends StatelessWidget {
         height: 44,
         child: Row(
           children: [
-            Row(
-              children: [
-                Icon(Icons.location_on, color: this.isLight ? Colors.white : Colors.black, size: 16),
-                SizedBox(width: 6),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      children: [
-                        Text("贵阳市", style: TextStyle(color: this.isLight ? Colors.white : Colors.black)),
-                        Icon(Icons.keyboard_arrow_down, color: this.isLight ? Colors.white : Colors.black, size: 16),
-                      ],
-                    ),
-                    Text("6℃~116℃", style: TextStyle(color: this.isLight ? Colors.white : Colors.black, fontSize: 12))
-                  ],
-                ),
-              ],
+            Expanded(
+              flex: 1,
+              child: Row(
+                children: [
+                  Icon(Icons.location_on, color: this.isLight ? Colors.white : Colors.black, size: 16),
+                  SizedBox(width: 6),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Text("贵阳市", style: TextStyle(color: this.isLight ? Colors.white : Colors.black)),
+                          Icon(Icons.keyboard_arrow_down, color: this.isLight ? Colors.white : Colors.black, size: 16),
+                        ],
+                      ),
+                      Text("6℃~116℃", style: TextStyle(color: this.isLight ? Colors.white : Colors.black, fontSize: 12))
+                    ],
+                  ),
+                ],
+              ),
             ),
             Expanded(
               flex: 1,
               child: Align(
                 child: Text("一码贵州", style: TextStyle(color: this.isLight ? Colors.white : Colors.black, fontSize: 24)),
               ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(),
             )
           ],
         )
@@ -302,95 +309,134 @@ class HYCommodities extends StatelessWidget {
         childAspectRatio: 0.8,
         physics: NeverScrollableScrollPhysics(),
         children: [
-          GestureDetector(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Container(
-                color: Colors.white,
-                child: Image.network(imageUrl, fit: BoxFit.fill),
-              ),
-            ),
-            onTap: () {
-              Navigator.of(context).pushNamed(HYWebLightApp.routeName);
-            },
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              color: Colors.white,
-              child: Image.network(imageUrl, fit: BoxFit.fill),
-            ),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              color: Colors.white,
-              child: Image.network(imageUrl, fit: BoxFit.fill),
-            ),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              color: Colors.white,
-              child: Image.network(imageUrl, fit: BoxFit.fill),
-            ),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              color: Colors.white,
-              child: Image.network(imageUrl, fit: BoxFit.fill),
-            ),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              color: Colors.white,
-              child: Image.network(imageUrl, fit: BoxFit.fill),
-            ),
-          ),ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              color: Colors.white,
-              child: Image.network(imageUrl, fit: BoxFit.fill),
-            ),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              color: Colors.white,
-              child: Image.network(imageUrl, fit: BoxFit.fill),
-            ),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              color: Colors.white,
-              child: Image.network(imageUrl, fit: BoxFit.fill),
-            ),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              color: Colors.white,
-              child: Image.network(imageUrl, fit: BoxFit.fill),
-            ),
-          ),ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              color: Colors.white,
-              child: Image.network(imageUrl, fit: BoxFit.fill),
-            ),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              color: Colors.white,
-              child: Image.network(imageUrl, fit: BoxFit.fill),
-            ),
-          ),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          HYCommodityItem(),
+          // GestureDetector(
+          //   child: ClipRRect(
+          //     borderRadius: BorderRadius.circular(20),
+          //     child: Container(
+          //       color: Colors.white,
+          //       child: Image.network(imageUrl, fit: BoxFit.fill),
+          //     ),
+          //   ),
+          //   onTap: () {
+          //     Navigator.of(context).pushNamed(HYWebLightApp.routeName);
+          //   },
+          // ),
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(20),
+          //   child: Container(
+          //     color: Colors.white,
+          //     child: Image.network(imageUrl, fit: BoxFit.fill),
+          //   ),
+          // ),
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(20),
+          //   child: Container(
+          //     color: Colors.white,
+          //     child: Image.network(imageUrl, fit: BoxFit.fill),
+          //   ),
+          // ),
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(20),
+          //   child: Container(
+          //     color: Colors.white,
+          //     child: Image.network(imageUrl, fit: BoxFit.fill),
+          //   ),
+          // ),
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(20),
+          //   child: Container(
+          //     color: Colors.white,
+          //     child: Image.network(imageUrl, fit: BoxFit.fill),
+          //   ),
+          // ),
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(20),
+          //   child: Container(
+          //     color: Colors.white,
+          //     child: Image.network(imageUrl, fit: BoxFit.fill),
+          //   ),
+          // ),ClipRRect(
+          //   borderRadius: BorderRadius.circular(20),
+          //   child: Container(
+          //     color: Colors.white,
+          //     child: Image.network(imageUrl, fit: BoxFit.fill),
+          //   ),
+          // ),
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(20),
+          //   child: Container(
+          //     color: Colors.white,
+          //     child: Image.network(imageUrl, fit: BoxFit.fill),
+          //   ),
+          // ),
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(20),
+          //   child: Container(
+          //     color: Colors.white,
+          //     child: Image.network(imageUrl, fit: BoxFit.fill),
+          //   ),
+          // ),
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(20),
+          //   child: Container(
+          //     color: Colors.white,
+          //     child: Image.network(imageUrl, fit: BoxFit.fill),
+          //   ),
+          // ),ClipRRect(
+          //   borderRadius: BorderRadius.circular(20),
+          //   child: Container(
+          //     color: Colors.white,
+          //     child: Image.network(imageUrl, fit: BoxFit.fill),
+          //   ),
+          // ),
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(20),
+          //   child: Container(
+          //     color: Colors.white,
+          //     child: Image.network(imageUrl, fit: BoxFit.fill),
+          //   ),
+          // ),
         ],
       ),
+    );
+  }
+}
+
+class HYCommodityItem extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Container(
+          color: Colors.white,
+          child: Image.network(imageUrl, fit: BoxFit.fill),
+        ),
+      ),
+      onTap: () {
+        Navigator.of(context).pushNamed(HYWebLightApp.routeName);
+      },
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:one_buy_guizhou/ui/pages/web_light_app/web_light_app.dart';
 
 class HYHomeScreen extends StatefulWidget {
@@ -78,6 +79,8 @@ class _HYHomeScreenState extends State<HYHomeScreen> {
                         HYHomeSearch(),
                         SizedBox(height: 12),
                         HYHot(),
+                        SizedBox(height: 12),
+                        OBSwiper(),
                         SizedBox(height: 12),
                         HYGrid(),
                         SizedBox(height: 12),
@@ -211,6 +214,35 @@ class HYHot extends StatelessWidget {
         Text(" | 温泉", style: TextStyle(color: Colors.white)),
         Text(" | 贵阳年货节", style: TextStyle(color: Colors.white)),
       ],
+    );
+  }
+}
+
+
+class OBSwiper extends StatefulWidget {
+  @override
+  OBSwiperState createState() => OBSwiperState();
+}
+
+class OBSwiperState extends State<OBSwiper> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          color: Colors.white
+      ),
+      height: 140,
+      child: Swiper(
+        itemBuilder: (BuildContext context,int index){
+          return new Image.network("http://via.placeholder.com/350x150",fit: BoxFit.fill,);
+        },
+        itemCount: 3,
+        autoplay: true,
+        pagination: new SwiperPagination(
+          builder: SwiperPagination.dots
+        )
+      ),
     );
   }
 }

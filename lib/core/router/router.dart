@@ -6,7 +6,9 @@ class HYRouter {
   static final String initialRoute = HYMainScreen.routeName;
 
   static final Map<String, WidgetBuilder> routers = {
+    // 首页
     HYMainScreen.routeName: (ctx) => HYMainScreen(),
+    // web轻应用
     HYWebLightApp.routeName: (ctx) => HYWebLightApp()
   };
 
